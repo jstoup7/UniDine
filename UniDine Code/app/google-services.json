@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "194598114809",
+    "firebase_url": "https://unidine-21195.firebaseio.com",
+    "project_id": "unidine-21195",
+    "storage_bucket": "unidine-21195.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:194598114809:android:8f75f6af7a56510b",
+        "android_client_info": {
+          "package_name": "com.example.unidine"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "194598114809-8spiphe257umohq4cl42973uc56kg572.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3fzRaWG7U1L3AMKicSQRuy0s5fJG_iEM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

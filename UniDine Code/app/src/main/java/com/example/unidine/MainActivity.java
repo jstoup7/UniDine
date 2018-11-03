@@ -25,13 +25,12 @@ public class MainActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        mAuth.signOut();
     }
 
     public void login(android.view.View view) {
         EditText email = (EditText)findViewById(R.id.userEmail);
         EditText password = (EditText)findViewById(R.id.userPassword);
-        mAuth.signOut();
         mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(Task<AuthResult> task) {
@@ -42,10 +41,36 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void createAccount(android.view.View view) {
+        EditText email = (EditText)findViewById(R.id.userEmail);
+        EditText password = (EditText)findViewById(R.id.userPassword);
+        mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    func();
+                }
+            }
+        });
+    }
+
+    public void createAccountSwitch(android.view.View view) {
+        setContentView(R.layout.activity_createaccount);
+    }
+
+    public void loginSwitch(android.view.View view) {
+        setContentView(R.layout.activity_login);
+    }
+
+    public void logout(android.view.View view) {
+        mAuth.signOut();
+        setContentView(R.layout.activity_main);
+    }
+
     public void func() {
-        TextView text = new TextView(this);
-        text.setText("Welcome " + mAuth.getCurrentUser().getEmail());
-        setContentView(text);
+        setContentView(R.layout.activity_welcome);
+        TextView welcomeText = (TextView)findViewById(R.id.welcomeText);
+        welcomeText.setText("Welcome " + mAuth.getCurrentUser().getEmail());
     }
 }
 

@@ -7,6 +7,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.AuthResult;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.OnFailureListener;
+
 
 import android.widget.EditText;
 import android.widget.TextView;
@@ -37,6 +39,11 @@ public class MainActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     func();
                 }
+            }
+        }).addOnFailureListener(this, new OnFailureListener() {
+            @Override
+            public void onFailure(Exception exception) {
+                System.out.println(exception.getMessage());
             }
         });
     }

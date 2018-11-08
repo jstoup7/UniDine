@@ -55,19 +55,25 @@ public class MainActivity extends AppCompatActivity {
     public void createAccount(android.view.View view) {
         EditText email = (EditText)findViewById(R.id.userEmail);
         EditText password = (EditText)findViewById(R.id.userPassword);
+        EditText passwordCheck = (EditText)findViewById(R.id.passwordCheck);
         final EditText name = (EditText)findViewById(R.id.userName);
-        mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    User user = new User(mAuth.getCurrentUser().getEmail());
-                    user.setName(name.getText().toString());
-                    DatabaseReference myRef = database.getReference("Users/" + mAuth.getCurrentUser().getUid());
-                    myRef.setValue(user);
-                    func();
+        if (password.getText().toString().equals(passwordCheck.getText().toString())){
+            mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        User user = new User(mAuth.getCurrentUser().getEmail());
+                        user.setName(name.getText().toString());
+                        DatabaseReference myRef = database.getReference("Users/" + mAuth.getCurrentUser().getUid());
+                        myRef.setValue(user);
+                        func();
+                    }
                 }
-            }
-        });
+            });
+        } else {
+            setContentView(R.layout.activity_main);
+        }
+
     }
 
     public void createAccountSwitch(android.view.View view) {

@@ -1,30 +1,25 @@
 package com.example.unidine;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Button;
+
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.AuthResult;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 
-import android.widget.EditText;
-import android.widget.TextView;
-
-public class MainActivity extends AppCompatActivity {
-    private FirebaseAuth mAuth;
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
+public class MainActivity extends AppCompatActivity implements android.view.View.OnClickListener {
+    private static FirebaseAuth mAuth;
+    //FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mAuth = FirebaseAuth.getInstance();
         setContentView(R.layout.activity_main);
+        mAuth = FirebaseAuth.getInstance();
+        Button btnLoginMain = findViewById(R.id.btnLoginMain);
+        btnLoginMain.setOnClickListener(this);
+        Button btnCreateAccountMain = findViewById(R.id.btnCreateAccountMain);
+        btnCreateAccountMain.setOnClickListener(this);
     }
 
     @Override
@@ -34,79 +29,33 @@ public class MainActivity extends AppCompatActivity {
         mAuth.signOut();
     }
 
-    public void login(android.view.View view) {
-        EditText email = (EditText)findViewById(R.id.userEmail);
-        EditText password = (EditText)findViewById(R.id.userPassword);
-        mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    func();
-                }
-            }
-        }).addOnFailureListener(this, new OnFailureListener() {
-            @Override
-            public void onFailure(Exception exception) {
-                System.out.println(exception.getMessage());
-            }
-        });
-    }
+    @Override
+    public void onClick(android.view.View view) {
+        switch (view.getId()) {
 
-    public void createAccount(android.view.View view) {
-        EditText email = (EditText)findViewById(R.id.userEmail);
-        EditText password = (EditText)findViewById(R.id.userPassword);
-        EditText passwordCheck = (EditText)findViewById(R.id.passwordCheck);
-        final EditText name = (EditText)findViewById(R.id.userName);
-        if (password.getText().toString().equals(passwordCheck.getText().toString())){
-            mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(Task<AuthResult> task) {
-                    if (task.isSuccessful()) {
-                        User user = new User(mAuth.getCurrentUser().getEmail());
-                        user.setName(name.getText().toString());
-                        DatabaseReference myRef = database.getReference("Users/" + mAuth.getCurrentUser().getUid());
-                        myRef.setValue(user);
-                        func();
-                    }
-                }
-            });
-        } else {
-            setContentView(R.layout.activity_main);
+            case R.id.btnLoginMain:
+                loginSwitch();
+                break;
+
+            case R.id.btnCreateAccountMain:
+                createAccountSwitch();
+                break;
+
+            default:
+                break;
         }
-
     }
 
-    public void createAccountSwitch(android.view.View view) {
-        setContentView(R.layout.activity_createaccount);
+    //Switches to LoginActivity
+    public void loginSwitch() {
+        Intent intentLogin = new Intent(this, LoginActivity.class);
+        startActivity(intentLogin);
     }
 
-    public void loginSwitch(android.view.View view) {
-        setContentView(R.layout.activity_login);
-    }
-
-    public void logout(android.view.View view) {
-        mAuth.signOut();
-        setContentView(R.layout.activity_main);
-    }
-
-    ValueEventListener postListener = new ValueEventListener() {
-        @Override
-        public void onDataChange(DataSnapshot dataSnapshot) {
-            // Get Post object and use the values to update the UI
-            setContentView(R.layout.activity_welcome);
-            TextView welcomeText = (TextView)findViewById(R.id.welcomeText);
-            welcomeText.setText("Welcome " + dataSnapshot.getValue());
-            // ...
-        }
-
-        @Override
-        public void onCancelled(DatabaseError databaseError) {
-        }
-    };
-
-    public void func() {
-        DatabaseReference myRef = database.getReference("Users/" + mAuth.getCurrentUser().getUid() + "/name");
-        myRef.addListenerForSingleValueEvent(postListener);
+    //Switches to CreateAccountActivity
+    public void createAccountSwitch() {
+        Intent intentCreateAccount = new Intent(this, CreateAccountActivity.class);
+        startActivity(intentCreateAccount);
     }
 }
 

@@ -23,6 +23,8 @@ public class WelcomeActivity extends MainActivity {
         mAuth = FirebaseAuth.getInstance();
         Button btnLogout = findViewById(R.id.btnLogout);
         btnLogout.setOnClickListener(this);
+        Button btnUpdateProfile = findViewById(R.id.btnUpdateProfile);
+        btnUpdateProfile.setOnClickListener(this);
         DatabaseReference myRef = database.getReference("Users/" + mAuth.getCurrentUser().getUid() + "/name");
         myRef.addListenerForSingleValueEvent(postListener);
     }
@@ -47,6 +49,10 @@ public class WelcomeActivity extends MainActivity {
                 logout();
                 break;
 
+            case R.id.btnUpdateProfile:
+                updateProfileSwitch();
+                break;
+
             default:
                 break;
         }
@@ -56,5 +62,10 @@ public class WelcomeActivity extends MainActivity {
         mAuth.signOut();
         Intent intentMain = new Intent(this, MainActivity.class);
         startActivity(intentMain);
+    }
+
+    public void updateProfileSwitch() {
+        Intent intentUpdateProfile = new Intent(this, UpdateProfileActivity.class);
+        startActivity(intentUpdateProfile);
     }
 }

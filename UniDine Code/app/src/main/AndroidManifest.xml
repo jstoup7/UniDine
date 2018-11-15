@@ -30,6 +30,10 @@
             android:name=".WelcomeActivity"
             android:parentActivityName=".MainActivity">
         </activity>
+        <activity
+            android:name=".UpdateProfileActivity"
+            android:parentActivityName=".MainActivity">
+        </activity>
     </application>
 
 </manifest>

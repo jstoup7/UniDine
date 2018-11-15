@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements android.view.View
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
-        mAuth.signOut();
+        //mAuth.signOut();
     }
 
     @Override

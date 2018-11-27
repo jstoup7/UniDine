@@ -32,6 +32,7 @@
         android:layout_marginBottom="8dp"
         android:fontFamily="casual"
         android:text="Welcome"
+        android:textColor="@color/colorPrimary"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/btnLogout"

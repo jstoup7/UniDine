@@ -24,7 +24,7 @@ public class CreateAccount2Activity extends MainActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_createaccount);
+        setContentView(R.layout.activity_createaccount2);
         mAuth = FirebaseAuth.getInstance();
         Button btnSave = findViewById(R.id.btnNext);
         btnSave.setOnClickListener(this);

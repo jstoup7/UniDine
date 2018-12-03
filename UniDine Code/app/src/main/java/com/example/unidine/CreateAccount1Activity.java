@@ -29,7 +29,7 @@ public class CreateAccount1Activity extends MainActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_createaccount1);
         mAuth = FirebaseAuth.getInstance();
         SignInButton googleSignIn = findViewById(R.id.sign_in_button);
         googleSignIn.setOnClickListener(this);

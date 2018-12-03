@@ -3,7 +3,6 @@ package com.example.unidine;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.widget.EditText;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -15,17 +14,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.auth.SignInMethodQueryResult;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-public class LoginActivity extends MainActivity {
-
+public class CreateAccount1Activity extends MainActivity {
     private FirebaseAuth mAuth;
     GoogleSignInClient mGoogleSignInClient;
     GoogleSignInAccount account;
@@ -65,21 +59,6 @@ public class LoginActivity extends MainActivity {
         }
     }
 
-    ValueEventListener postListener = new ValueEventListener() {
-        @Override
-        public void onDataChange(DataSnapshot dataSnapshot) {
-
-            if (dataSnapshot.child("isAccountSetup").getValue().toString() == "true") {
-                func();
-            } else {
-                func2();
-            }
-        }
-
-        @Override
-        public void onCancelled(DatabaseError databaseError) {}
-    };
-
     private void signIn() {
         System.out.println("SIGN IN");
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
@@ -100,19 +79,21 @@ public class LoginActivity extends MainActivity {
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
-        final LoginActivity self = this;
+        final CreateAccount1Activity self = this;
         final AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.fetchSignInMethodsForEmail(acct.getEmail()).addOnCompleteListener(this, new OnCompleteListener<SignInMethodQueryResult>() {
             @Override
             public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
-                if (task.isSuccessful() && task.getResult().getSignInMethods().size() > 0) {
+                if (task.isSuccessful() && task.getResult().getSignInMethods().size() == 0) {
                     mAuth.signInWithCredential(credential)
                             .addOnCompleteListener(self, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
+                                        User userRef = new User(task.getResult().getUser().getEmail(), task.getResult().getUser().getDisplayName());
                                         DatabaseReference myRef = database.getReference("Users/" + mAuth.getCurrentUser().getUid());
-                                        myRef.addListenerForSingleValueEvent(postListener);
+                                        myRef.setValue(userRef);
+                                        func();
                                     } else {
                                         System.out.println("FAILURE");
                                     }
@@ -127,11 +108,6 @@ public class LoginActivity extends MainActivity {
     }
 
     public void func() {
-        Intent intentWelcome = new Intent(this, WelcomeActivity.class);
-        startActivity(intentWelcome);
-    }
-
-    public void func2() {
         Intent intentCreateAccount2 = new Intent(this, CreateAccount2Activity.class);
         startActivity(intentCreateAccount2);
     }

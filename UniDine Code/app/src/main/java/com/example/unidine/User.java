@@ -5,13 +5,20 @@ public class User {
     String email;
     int age;
     int radius;
+    String food;
+    boolean isAccountSetup;
 
 
 
 
 
-    public User(String e) {
+    public User(String e, String n) {
         this.email = e;
+        this.name = n;
+        this.age = 0;
+        this.radius = 0;
+        this.food = "";
+        this.isAccountSetup = false;
     }
 
     public String getName() {
@@ -44,5 +51,17 @@ public class User {
 
     public void setRadius(int radius) {
         this.radius = radius;
+    }
+
+    public String getFood() {
+        return food;
+    }
+
+    public void setFood(String food) { this.food = food;}
+
+    public void setAccountSetup(boolean b) { this.isAccountSetup = b;}
+
+    public boolean getAccountSetup() {
+        return isAccountSetup;
     }
 }

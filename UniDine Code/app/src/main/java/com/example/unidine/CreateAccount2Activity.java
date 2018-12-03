@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class UpdateProfileActivity extends MainActivity {
+public class CreateAccount2Activity extends MainActivity {
 
     private FirebaseAuth mAuth;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -24,13 +24,10 @@ public class UpdateProfileActivity extends MainActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_updateprofile);
+        setContentView(R.layout.activity_createaccount);
         mAuth = FirebaseAuth.getInstance();
-        Button btnSave = findViewById(R.id.btnSave);
+        Button btnSave = findViewById(R.id.btnNext);
         btnSave.setOnClickListener(this);
-        Button btnExit = findViewById(R.id.btnExit);
-        btnExit.setOnClickListener(this);
-        System.out.println(mAuth.getCurrentUser());
         DatabaseReference myRef = database.getReference("Users/" + mAuth.getCurrentUser().getUid());
         myRef.addListenerForSingleValueEvent(postListener);
     }
@@ -39,12 +36,8 @@ public class UpdateProfileActivity extends MainActivity {
     public void onClick(android.view.View view) {
         switch (view.getId()) {
 
-            case R.id.btnSave:
+            case R.id.btnNext:
                 updateUserInfo();
-                break;
-
-            case R.id.btnExit:
-                welcomeSwitch();
                 break;
 
             default:
@@ -56,16 +49,14 @@ public class UpdateProfileActivity extends MainActivity {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
 
-            EditText name = findViewById(R.id.userName);
-            EditText age = findViewById(R.id.userAge);
-            EditText radius = findViewById(R.id.userRadius);
-            EditText email = findViewById(R.id.userEmail);
-            EditText food = findViewById(R.id.userFoodPreference);
+            EditText name = findViewById(R.id.createUserName);
+            EditText age = findViewById(R.id.createUserAge);
+            EditText radius = findViewById(R.id.createUserRadius);
+            EditText food = findViewById(R.id.createUserFoodPreference);
 
             name.setHint(dataSnapshot.child("name").getValue().toString());
             age.setHint(dataSnapshot.child("age").getValue().toString());
             radius.setHint(dataSnapshot.child("radius").getValue().toString());
-            email.setHint(dataSnapshot.child("email").getValue().toString());
             food.setHint(dataSnapshot.child("food").getValue().toString());
         }
 
@@ -75,10 +66,10 @@ public class UpdateProfileActivity extends MainActivity {
 
     public void updateUserInfo() {
 
-        EditText name = findViewById(R.id.userName);
-        EditText age = findViewById(R.id.userAge);
-        EditText radius = findViewById(R.id.userRadius);
-        EditText food = findViewById(R.id.userFoodPreference);
+        EditText name = findViewById(R.id.createUserName);
+        EditText age = findViewById(R.id.createUserAge);
+        EditText radius = findViewById(R.id.createUserRadius);
+        EditText food = findViewById(R.id.createUserFoodPreference);
 
         Map<String, Object> childUpdates = new HashMap<>();
         if (name.getText().toString().length() > 0){
@@ -93,6 +84,8 @@ public class UpdateProfileActivity extends MainActivity {
         if (food.getText().toString().length() > 0) {
             childUpdates.put("/food/", food.getText().toString());
         }
+
+        childUpdates.put("/isAccountSetup", true);
 
         database.getReference("Users/" + mAuth.getCurrentUser().getUid()).updateChildren(childUpdates);
 

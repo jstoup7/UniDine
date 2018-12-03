@@ -15,11 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "194598114809-f5g5u4elloeujm4oir8vf9hj7oahi8qa.apps.googleusercontent.com",
+          "client_id": "194598114809-2t5ac5tq27uuo5ldkrkdi2gk8klt6nmr.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.unidine",
-            "certificate_hash": "c044efb93d9cabc176acb3e71c0380f1b7a87d88"
+            "certificate_hash": "86b49e117712ba8b0fe7ce53092290a53f8336a2"
           }
         },
         {

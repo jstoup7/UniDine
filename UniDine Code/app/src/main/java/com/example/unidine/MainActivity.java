@@ -25,8 +25,6 @@ public class MainActivity extends AppCompatActivity implements android.view.View
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        //mAuth.signOut();
     }
 
     @Override
@@ -54,8 +52,8 @@ public class MainActivity extends AppCompatActivity implements android.view.View
 
     //Switches to CreateAccountActivity
     public void createAccountSwitch() {
-        Intent intentCreateAccount = new Intent(this, CreateAccountActivity.class);
-        startActivity(intentCreateAccount);
+        Intent intentCreateAccount1 = new Intent(this, CreateAccount1Activity.class);
+        startActivity(intentCreateAccount1);
     }
 }
 

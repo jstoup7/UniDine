@@ -68,7 +68,7 @@ public class LoginActivity extends MainActivity {
     ValueEventListener postListener = new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
-
+            System.out.println("TEST3");
             if (dataSnapshot.child("isAccountSetup").getValue().toString() == "true") {
                 func();
             } else {
@@ -110,7 +110,9 @@ public class LoginActivity extends MainActivity {
                             .addOnCompleteListener(self, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
+                                    System.out.println("TEST");
                                     if (task.isSuccessful()) {
+                                        System.out.println("TEST1");
                                         DatabaseReference myRef = database.getReference("Users/" + mAuth.getCurrentUser().getUid());
                                         myRef.addListenerForSingleValueEvent(postListener);
                                     } else {

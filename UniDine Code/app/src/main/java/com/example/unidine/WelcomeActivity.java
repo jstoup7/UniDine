@@ -25,6 +25,8 @@ public class WelcomeActivity extends MainActivity {
         btnLogout.setOnClickListener(this);
         Button btnUpdateProfile = findViewById(R.id.btnUpdateProfile);
         btnUpdateProfile.setOnClickListener(this);
+        Button btnViewUserList = findViewById(R.id.btnViewUserList);
+        btnViewUserList.setOnClickListener(this);
         DatabaseReference myRef = database.getReference("Users/" + mAuth.getCurrentUser().getUid() + "/name");
         myRef.addListenerForSingleValueEvent(postListener);
     }
@@ -53,6 +55,10 @@ public class WelcomeActivity extends MainActivity {
                 updateProfileSwitch();
                 break;
 
+            case R.id.btnViewUserList:
+                userListSwitch();
+                break;
+
             default:
                 break;
         }
@@ -67,5 +73,10 @@ public class WelcomeActivity extends MainActivity {
     public void updateProfileSwitch() {
         Intent intentUpdateProfile = new Intent(this, UpdateProfileActivity.class);
         startActivity(intentUpdateProfile);
+    }
+
+    public void userListSwitch() {
+        Intent intentUserList = new Intent(this, ViewUserListActivity.class);
+        startActivity(intentUserList);
     }
 }

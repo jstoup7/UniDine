@@ -63,6 +63,24 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ViewUserListActivity"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="com.example.unidine.ViewUserListActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ProfileActivity"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="com.example.unidine.ProfileActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

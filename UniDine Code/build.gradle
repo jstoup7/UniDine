@@ -5,10 +5,17 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven { url "http://dl.bintray.com/chat-sdk/chat-sdk-android" }
+        maven { url "https://jitpack.io"}
     }
+
     dependencies {
         classpath 'com.android.tools.build:gradle:3.2.1'
         classpath 'com.google.gms:google-services:3.0.0'
+        classpath 'co.chatsdk.chatsdk:chat-sdk-core:4.6.0'
+        classpath 'co.chatsdk.chatsdk:chat-sdk-ui:4.6.0'
+        classpath 'co.chatsdk.chatsdk:chat-sdk-firebase-adapter:4.6.0'
+        classpath 'co.chatsdk.chatsdk:chat-sdk-firebase-file-storage:4.6.0'
 
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -20,6 +27,8 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url "http://dl.bintray.com/chat-sdk/chat-sdk-android" }
+        maven { url "https://jitpack.io"}
     }
 }
 

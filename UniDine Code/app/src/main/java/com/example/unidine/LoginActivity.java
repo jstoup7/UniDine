@@ -2,7 +2,6 @@ package com.example.unidine;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.widget.EditText;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -23,6 +22,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import androidx.annotation.NonNull;
 
 public class LoginActivity extends MainActivity {
 
@@ -110,11 +111,9 @@ public class LoginActivity extends MainActivity {
                             .addOnCompleteListener(self, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
-                                    System.out.println("TEST");
                                     if (task.isSuccessful()) {
-                                        System.out.println("TEST1");
                                         DatabaseReference myRef = database.getReference("Users/" + mAuth.getCurrentUser().getUid());
-                                        myRef.addListenerForSingleValueEvent(postListener);
+                                        myRef.addValueEventListener(postListener);
                                     } else {
                                         System.out.println("FAILURE");
                                     }

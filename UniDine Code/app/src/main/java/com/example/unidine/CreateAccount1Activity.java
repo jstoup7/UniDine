@@ -2,7 +2,6 @@ package com.example.unidine;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -18,6 +17,8 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.auth.SignInMethodQueryResult;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import androidx.annotation.NonNull;
 
 public class CreateAccount1Activity extends MainActivity {
     private FirebaseAuth mAuth;

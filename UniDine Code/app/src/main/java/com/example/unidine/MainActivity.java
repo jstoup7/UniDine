@@ -1,17 +1,19 @@
 package com.example.unidine;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity implements android.view.View.OnClickListener {
     private static FirebaseAuth mAuth;
     //FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

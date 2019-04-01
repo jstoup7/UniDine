@@ -1,5 +1,6 @@
 package com.example.unidine;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -11,6 +12,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
+
+import co.chatsdk.core.session.InterfaceManager;
 
 public class WelcomeActivity extends MainActivity {
     private FirebaseAuth mAuth;
@@ -27,6 +30,8 @@ public class WelcomeActivity extends MainActivity {
         btnUpdateProfile.setOnClickListener(this);
         Button btnViewUserList = findViewById(R.id.btnViewUserList);
         btnViewUserList.setOnClickListener(this);
+        Button btnViewMessaging = findViewById(R.id.btnViewMessaging);
+        btnViewMessaging.setOnClickListener(this);
         DatabaseReference myRef = database.getReference("Users/" + mAuth.getCurrentUser().getUid() + "/name");
         myRef.addListenerForSingleValueEvent(postListener);
     }
@@ -57,6 +62,11 @@ public class WelcomeActivity extends MainActivity {
 
             case R.id.btnViewUserList:
                 userListSwitch();
+                break;
+
+            case R.id.btnViewMessaging:
+                Context context = getApplicationContext();
+                InterfaceManager.shared().a.startLoginActivity(context, true);
                 break;
 
             default:

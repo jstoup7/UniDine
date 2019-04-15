@@ -3,7 +3,6 @@ package com.example.unidine;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -12,9 +11,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class ProfileActivity extends MainActivity {
     private FirebaseAuth mAuth;
@@ -50,7 +46,7 @@ public class ProfileActivity extends MainActivity {
 
             TextView name = findViewById(R.id.userNameView);
             TextView age = findViewById(R.id.userAgeView);
-            TextView radius = findViewById(R.id.userRadiusView);
+            TextView radius = findViewById(R.id.LocationLabel);
             TextView food = findViewById(R.id.userFoodPreferenceView);
 
             name.setText("Name: " + dataSnapshot.child("name").getValue().toString());

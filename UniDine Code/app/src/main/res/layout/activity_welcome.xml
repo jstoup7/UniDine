@@ -7,6 +7,20 @@
     tools:actionBarNavMode="@color/colorAccent">
 
     <Button
+        android:id="@+id/btnCreateMeeting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Create a Meeting"
+        app:layout_constraintBottom_toTopOf="@+id/btnViewUserList"
+        app:layout_constraintEnd_toStartOf="@+id/btnUpdateProfile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
         android:id="@+id/btnLogout"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="239dp"
@@ -83,5 +97,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/btnUpdateProfile"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnMeetingInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="3dp"
+        android:text="Meetings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

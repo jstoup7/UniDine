@@ -33,13 +33,14 @@ public class UpdateProfileActivity extends MainActivity {
         System.out.println(mAuth.getCurrentUser());
         DatabaseReference myRef = database.getReference("Users/" + mAuth.getCurrentUser().getUid());
         myRef.addListenerForSingleValueEvent(postListener);
+        System.out.println("UPDATE----------------");
     }
 
     @Override
     public void onClick(android.view.View view) {
         switch (view.getId()) {
 
-            case R.id.btnSave:
+            case R.id.btnNext:
                 updateUserInfo();
                 break;
 

@@ -32,6 +32,10 @@ public class WelcomeActivity extends MainActivity {
         btnViewUserList.setOnClickListener(this);
         Button btnViewMessaging = findViewById(R.id.btnViewMessaging);
         btnViewMessaging.setOnClickListener(this);
+        Button btnCreateMeeting = findViewById(R.id.btnCreateMeeting);
+        btnCreateMeeting.setOnClickListener(this);
+        Button btnMeetingInfo = findViewById(R.id.btnMeetingInfo);
+        btnMeetingInfo.setOnClickListener(this);
         DatabaseReference myRef = database.getReference("Users/" + mAuth.getCurrentUser().getUid() + "/name");
         myRef.addListenerForSingleValueEvent(postListener);
     }
@@ -69,6 +73,14 @@ public class WelcomeActivity extends MainActivity {
                 InterfaceManager.shared().a.startLoginActivity(context, true);
                 break;
 
+            case R.id.btnCreateMeeting:
+                createMeetingSwitch();
+                break;
+
+            case R.id.btnMeetingInfo:
+                meetingInfoSwitch();
+                break;
+
             default:
                 break;
         }
@@ -88,5 +100,15 @@ public class WelcomeActivity extends MainActivity {
     public void userListSwitch() {
         Intent intentUserList = new Intent(this, ViewUserListActivity.class);
         startActivity(intentUserList);
+    }
+
+    public void createMeetingSwitch() {
+        Intent intentCreateMeeting = new Intent(this, CreateMeeting1Activity.class);
+        startActivity(intentCreateMeeting);
+    }
+
+    public void meetingInfoSwitch() {
+        Intent intentMeetingsList = new Intent(this, MeetingsListActivity.class);
+        startActivity(intentMeetingsList);
     }
 }

@@ -38,6 +38,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.1'
     implementation 'com.google.firebase:firebase-auth:16.0.2'
     implementation 'com.google.firebase:firebase-database:16.0.2'
+    implementation 'com.google.firebase:firebase-messaging:16.0.2'
     implementation 'com.google.android.gms:play-services-auth:16.0.1'
 
     implementation 'co.chatsdk.chatsdk:chat-sdk-firebase-adapter:4.6.0'

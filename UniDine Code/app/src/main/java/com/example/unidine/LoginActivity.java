@@ -113,7 +113,7 @@ public class LoginActivity extends MainActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         DatabaseReference myRef = database.getReference("Users/" + mAuth.getCurrentUser().getUid());
-                                        myRef.addValueEventListener(postListener);
+                                        myRef.addListenerForSingleValueEvent(postListener);
                                     } else {
                                         System.out.println("FAILURE");
                                     }

@@ -82,6 +82,51 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".CreateMeeting1Activity"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="com.example.unidine.CreateMeeting1Activity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".CreateMeeting2Activity"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="com.example.unidine.CreateMeeting1Activity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MeetingConfirmationActivity"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="com.example.unidine.MeetingConfirmationActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".AttendeesListActivity"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="com.example.unidine.AttendeesListActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MeetingsListActivity"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="com.example.unidine.MeetingsListActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
